@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Demo</title>
+  <meta charset="utf-8">
+  <script src="/static/js/jquery-3.3.1.min.js"></script>
+  <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+  <style type="text/css">
+  #login .show {
+    display: block;
+  }
+
+  #login .hide {
+    display: none;
+  }
+
+  #login {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1200;
+    background-color: #f3f3f3;
+    height: 100%;
+    margin: 0;
+    padding-top: 100px;
+  }
+
+  #login .row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  #login .glyphicon {
+    top: 0;
+  }
+
+  #login .header {
+    font-size: 17.5px;
+  }
+
+  #login .psd,
+  #login button,
+  #login form {
+    margin-top: 20px;
+  }
+
+  #login a {
+    color: #b1b1b1;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #login .active {
+    color: #000;
+  }
+</style>
+</head>
+<body>
+  <div class="row" id="login">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+      <div class="header">
+        <a class="active" onclick="changeLoginWay('login')">&nbsp;&nbsp;&nbsp;&nbsp;登录&nbsp;&nbsp;&nbsp;&nbsp;·</a>
+        <a onclick="changeLoginWay('register')">&nbsp;&nbsp;&nbsp;&nbsp;注册&nbsp;&nbsp;&nbsp;&nbsp;</a>
+      </div>
+      <div class="alert alert-danger hide">
+        用户名或密码错误！
+      </div>
+      <div class="content">
+        <form class="from-login">
+          <div class="input-group usr">
+            <span class="input-group-addon glyphicon glyphicon-user"></span>
+            <input type="text" class="form-control" placeholder="Username" v-model="username">
+          </div>
+          <div class="input-group psd">
+            <span class="input-group-addon glyphicon glyphicon-lock"></span>
+            <input type="text" class="form-control" placeholder="Password" v-model="password">
+          </div>
+          <button class="btn btn-success btn-block" id="btn-submit" type="button" onclick="login">登录</button>
+        </form>
+        <form class="form-register hide">
+          <div class="input-group usr">
+            <span class="input-group-addon glyphicon glyphicon-user"></span>
+            <input type="text" class="form-control" placeholder="Username" v-model="usernameR">
+          </div>
+          <div class="input-group psd">
+            <span class="input-group-addon glyphicon glyphicon-lock"></span>
+            <input type="text" class="form-control" placeholder="Password" v-model="passwordR">
+          </div>
+          <button class="btn btn-success btn-block" id="btn-register" type="button" onclick="register">注册</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  function changeLoginWay(way) {
+    var className = event.target.className;
+    if(way === 'login') {
+      if(className !== 'active') {
+        event.target.className = 'active';
+        event.target.nextSibling.nextSibling.className = '';
+      }
+      $('.from-login').removeClass('hide').addClass('show');
+      $('.form-register').removeClass('show').addClass('hide');
+    } else if(way === 'register') {
+      if(className !== 'active') {
+        event.target.className = 'active';
+        event.target.previousSibling.previousSibling.className = '';
+      }
+      $('.form-register').removeClass('hide').addClass('show');
+      $('.from-login').removeClass('show').addClass('hide');
+    }
+  }
+
+  function login() {
+    
+  }
+
+  function register() {
+    
+  }
+</script>
+</html>
