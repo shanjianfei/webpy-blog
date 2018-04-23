@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>xxx论坛</title>
+	<meta charset="utf-8">
+	<script src="/static/js/jquery-3.3.1.min.js"></script>
+	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="login">
+		<span style="float: right"></span>
+		<div style="clear:both"></div>
+	</div>
+	<header>欢迎来到xxx论坛</header>
+</body>
+<script type="text/javascript">
+	(function() {
+		$.get('/getUser', function(result) {
+			var res = eval('(' + result + ')');
+			$('.login>span').text('欢迎你: ' + res['username']);
+		});
+	})();
+</script>
+</html>

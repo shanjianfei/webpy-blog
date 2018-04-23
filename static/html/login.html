@@ -130,7 +130,10 @@
       dataType: 'json',
       data: dataSend,
       success: function(result) {
-        if(result['status'] == 'fail') {
+        if(result['status'] == 'success') {
+          console.log(100)
+          window.location.href = '/';
+        } else  {
           $('.alert').removeClass('alert-success hide').addClass('alert-danger').text('用户名或密码错误！');
         }
       },
