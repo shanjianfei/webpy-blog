@@ -6,6 +6,37 @@
 	<script src="/static/js/jquery-3.3.1.min.js"></script>
 	<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+	<style type="text/css">
+		#footer {
+			position: absolute;
+			left: 20px;
+			right: 20px;
+			bottom: 10px;
+			color: #969696;
+			text-align: center;
+		}
+		#footer button {
+			float: right;
+			margin-top: 20px;
+			margin-right: 15px;
+		}
+		#footer textarea {
+			border: 1px solid #c6c6c6;
+		}
+		section .comment {
+			margin: 0 0 8px;
+			font-size: 15px;
+			line-height: 24px;
+		}
+		section li {
+			position: relative;
+			width: 80%;
+			list-style-type:none;
+			border: 1px solid;
+			/*#f0f0f0*/
+		}
+
+	</style>
 </head>
 <body>
 	<div class="login">
@@ -13,17 +44,26 @@
 		<div style="clear:both"></div>
 	</div>
 	<header>欢迎来到xxx论坛</header>
-	<section></section>
-	<footer>
+	<section><ul></ul></section>
+	<footer id="footer">
 		<textarea class="form-control" rows="3"></textarea>
+		<button class="btn btn-primary" onclick="publish()">发表</button>
 	</footer>
 </body>
 <script type="text/javascript">
 	(function() {
-		$.get('/getUser', function(result) {
+		$.get('/user', function(result) {
 			var res = eval('(' + result + ')');
 			$('.login>span').text('欢迎你: ' + res['username']);
 		});
 	})();
+
+	function publish() {
+		event.preventDefault();
+		var comment = $('#footer textarea').val();
+		var $li = $('<li></li>');
+		$li.append('<p class="comment">' + comment + '</p>');
+		$('section ul').append($li);
+	}
 </script>
 </html>

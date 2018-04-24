@@ -8,7 +8,8 @@ urls = (
 	'/', 'Index',
 	'/login', 'Login',
 	'/register', 'Register',
-	'/getUser', 'GetUser'
+	'/user', 'User',
+	'/comment', 'Comment',
 )
 
 
@@ -28,7 +29,6 @@ else:
 
 class Index(object):
 	def GET(self):
-		print session.login
 		if session.get('login') == 1:
 			try:
 				f = open('index/index_login.html', 'r')
@@ -71,10 +71,21 @@ class Register(object):
 		else:
 			return json.dumps({'status': 'fail'})
 
-class GetUser(object):
+class User(object):
 	def GET(self):
 		if session.get('username', None) is not None and session.get('login', 0) == 1:
 			return json.dumps({'username': session.get('username')})
+
+class Comment(object):
+	def GET(self):
+		pass
+
+	def POST(self):
+		if session.login == 1:
+			return json.dumps({'status': 'success'})
+		else:
+			return json.dumps({'status': 'fail'})
+		
 
 
 if __name__ == '__main__':
