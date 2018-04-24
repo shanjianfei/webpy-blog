@@ -131,7 +131,6 @@
       data: dataSend,
       success: function(result) {
         if(result['status'] == 'success') {
-          console.log(100)
           window.location.href = '/';
         } else  {
           $('.alert').removeClass('alert-success hide').addClass('alert-danger').text('用户名或密码错误！');
@@ -157,6 +156,7 @@
       success: function(result) {
         if(result['status'] == 'success') {
           $('.alert').removeClass('alert-danger hide').addClass('alert-success').text('注册成功！');
+          setTimeout(function() {window.location.reload();}, 300);
         }
       },
     });
