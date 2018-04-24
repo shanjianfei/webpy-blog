@@ -1,3 +1,4 @@
+# --*-- coding: utf-8 --*--
 import web
 import json
 
@@ -10,17 +11,40 @@ urls = (
 	'/getUser', 'GetUser'
 )
 
-web.config.debug = False
+
 app = web.application(urls, globals())
-session = web.session.Session(app, web.session.DiskStore('sessions'), {'username': None, 'login': 0})
+
+"""
+sessoin对象用来保存用户状态,目前只有两种状态。
+1，login的值为0时表示此次发起请求的用户是处于未登录的状态
+2，login的值为1时表示此次发起请求的用户是处于登录的状态
+"""
+if '_session' not in web.config: #将session加入到webpy全局变量中
+    session = web.session.Session(app, web.session.DiskStore('sessions'), {'username': None, 'login': 0})
+    web.config._session = session
+else:
+    session = web.config._session
 
 
 class Index(object):
 	def GET(self):
+		print session.login
 		if session.get('login') == 1:
-			raise web.seeother('/static/html/index_login.html')
+			try:
+				f = open('index/index_login.html', 'r')
+				return f.read()
+			except Exception,e:
+				print e
+				return web.notfound('页面不存在')
+			# raise web.seeother('/static/html/index_login.html')
 		else:
-			raise web.seeother('/static/html/index_not_login.html')
+			try:
+				f = open('index/index_not_login.html', 'r')
+				return f.read()
+			except Exception,e:
+				print e
+				return web.notfound('页面不存在')
+			# raise web.seeother('/static/html/index_not_login.html')
 
 class Login(object):
 	def GET(self):
