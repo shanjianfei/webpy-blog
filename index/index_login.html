@@ -23,17 +23,48 @@
 		#footer textarea {
 			border: 1px solid #c6c6c6;
 		}
-		section .comment {
+		.comment {
 			margin: 0 0 8px;
 			font-size: 15px;
 			line-height: 24px;
 		}
-		section li {
+		li {
 			position: relative;
-			width: 80%;
+			width: 100%;
+			margin: 0 0 17px;
+			padding: 0 2px 17px 0;
 			list-style-type:none;
-			border: 1px solid;
+			border-bottom: 1px solid;
+			display: list-item;
 			/*#f0f0f0*/
+		}
+
+		.avatar {
+			width: 32px;
+			height: 32px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.avatar img {
+			width: 100%;
+			height: 100%;
+			border: 1px solid #ddd;
+			border-radius: 50%;
+		}
+
+		.info {
+			display: inline-block;
+		}
+
+		.info .time {
+			display: inline-block;
+			padding-left: 3px;
+			color: #969696;
+			vertical-align: middle;
+		}
+
+		a {
+			cursor: pointer;
 		}
 
 	</style>
@@ -44,7 +75,29 @@
 		<div style="clear:both"></div>
 	</div>
 	<header>欢迎来到xxx论坛</header>
-	<section><ul></ul></section>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3">
+			<ul>
+				<li>
+					<div>
+						<div class="auther">
+							<a class="avatar" target="_blank">
+								<img src="/static/img/3f091fa05686.jpg">
+							</a>
+							<div class="info">
+								<a class="nickname" target="_blank">小明</a>
+								<span class="label label-primary">初级</span>
+								<span class="time">04.25 22:53</span>
+							</div>
+						</div>
+						<div class="title">慵懒中长大的人，只会挨生活留下的耳光</div>
+						<p class="content">01 每年单位都会组织临时聘用人员的套转考试，考上的人可以由临时工转为合同工，身份的转变不仅意味着更加有保障，还可以拿到绩效奖，工资比原来多出3千多元，所以每年都有不少人员报...</p>
+						<div class="meta"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
 	<footer id="footer">
 		<textarea class="form-control" rows="3"></textarea>
 		<button class="btn btn-primary" onclick="publish()">发表</button>
