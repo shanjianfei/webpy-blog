@@ -26,6 +26,14 @@ if '_session' not in web.config: #将session加入到webpy全局变量中
 else:
     session = web.config._session
 
+def connect():
+	try:
+		db = web.database(dbn='mysql',host='localhost',port=3306, db='test')
+		return db
+	except Exception,e:
+		print e
+		return -1
+
 
 class Index(object):
 	def GET(self):
@@ -81,7 +89,12 @@ class Comment(object):
 		pass
 
 	def POST(self):
-		if session.login == 1:
+		data = web.input(comment='')
+		if session.login == 1 and data.comment != '':
+			user = session.get('username', '匿名用户')
+			db = connect()
+			if db != -1:
+				re = db.insert('comment', content=data.comment, user=user)
 			return json.dumps({'status': 'success'})
 		else:
 			return json.dumps({'status': 'fail'})

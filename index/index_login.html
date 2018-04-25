@@ -61,9 +61,18 @@
 	function publish() {
 		event.preventDefault();
 		var comment = $('#footer textarea').val();
-		var $li = $('<li></li>');
-		$li.append('<p class="comment">' + comment + '</p>');
-		$('section ul').append($li);
+		$.post('/comment', {comment: comment}, function(result) {
+			var res = eval('(' + result + ')');
+			if('status' in res && res['status'] === 'success') {
+				var $li = $('<li></li>');
+				$li.append('<p class="comment">' + comment + '</p>');
+				$('section ul').append($li);
+				$('#footer textarea').val('');
+			} else {
+				alert('提交失败');
+			}
+		});
+		
 	}
 </script>
 </html>
