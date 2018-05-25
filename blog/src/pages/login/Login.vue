@@ -10,11 +10,11 @@
         <form v-bind:class="['from-login', way==='login'? 'show': 'hide']">
           <div class="input-group usr">
             <span class="input-group-addon glyphicon glyphicon-user"></span>
-            <input type="text" class="form-control" placeholder="Username">
+            <input type="text" class="form-control" placeholder="Username" v-model="username">
           </div>
           <div class="input-group psd">
             <span class="input-group-addon glyphicon glyphicon-lock"></span>
-            <input type="text" class="form-control" placeholder="Password">
+            <input type="text" class="form-control" placeholder="Password" v-model="password">
           </div>
           <button class="btn btn-success btn-block" id="btn-submit" type="button" @click="login">登录</button>
         </form>
@@ -37,6 +37,8 @@
 export default {
     data: function() {
         return {
+            username: '',
+            password: '',
             usernameR: '',
             passwordR: '',
             way: 'login'
@@ -44,7 +46,8 @@ export default {
     },
     methods: {
         login: function() {
-            if(this.usernameR && this.passwordR) {
+            console.log(this.username)
+            if(this.username && this.password) {
                 this.$axios.post('/login', {user: this.usernameR, password: this.passwordR})
                 .then(function(response) {
                     console.log(response)
