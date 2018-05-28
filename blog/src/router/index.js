@@ -20,7 +20,31 @@ export default new Router({
             {
                 path: '',
                 component: ArticleContainer
-            }
+            },
+            {
+                path: 'homepage',
+                component: ArticleContainer
+            },
+            {
+                path: 'webpage',
+                component: ArticleContainer
+            },
+            {
+                path: 'pythonpage',
+                component: ArticleContainer
+            },
+            {
+                path: 'jspage',
+                component: ArticleContainer
+            },
+            {
+                path: 'htmlpage',
+                component: ArticleContainer
+            },
+            {
+                path: 'csspage',
+                component: ArticleContainer
+            },
         ]
     },
   ]

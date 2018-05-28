@@ -1,31 +1,38 @@
 <template>
     <div class="article">
-        <a>
-            <div class="row"><span class="label label-primary">js</span></div>
-            <div class="row">
-                <div class="col-md-8">
-                    <h2>{{title}}</h2>
-                    <div class="detail">
-                        <span>{{datetime}}</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <span>阅读量: {{clickRate}}</span>
+        <div v-for="item in info">
+            <a>
+                <div class="row"><span class="label label-primary">{{item.type}}</span></div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>{{item.title}}</h2>
+                        <div class="detail">
+                            <span>{{item.datetime}}</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <span>阅读量: {{item.clickRate}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="/static/img/js.jpg">
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <img src="/static/img/js.jpg">
-                </div>
-            </div>
-        </a>
+            </a>
+        </div>
+        
     </div>
 </template>
 <script>
+    import {mapState} from 'vuex'
     export default {
-        data() {
-            return {
-                title: 'vue 前端登录拦截',
-                datetime: '2018-05-28 16:58:03',
-                clickRate: 0
-            }
+        methods: {
+
+        },
+        computed: mapState({
+            // 箭头函数可使代码更简练
+            info: state => state.info,
+        }),
+        created: function() {
+            console.log(this.$store.state.info)
         }
     }
 </script>
@@ -41,8 +48,13 @@
     .article .detail {
         margin-top: 20px;
     }
-    a {
+    .article a {
         cursor: pointer;
+    }
+    .article>div {
+        background: #2d2d2d;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
     .article img {
         width: 200px;
