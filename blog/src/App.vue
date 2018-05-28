@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <head-top></head-top>
+    <div class="body">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import headTop from "@/components/head/Head"
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+      headTop
+  }
 }
 </script>
 
@@ -18,6 +24,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100%;
+}
+.body {
+  margin: auto;
+  text-align: center;
+  max-width: 900px;
+  background: #e9e9e9;
 }
 </style>
