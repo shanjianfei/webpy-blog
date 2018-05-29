@@ -5,12 +5,12 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <router-link to="/home/homepage" tag="li">首页</router-link>
-                        <router-link to="/home/webpage" tag="li">web</router-link>
-                        <router-link to="/home/pythonpage" tag="li">python</router-link>
-                        <router-link to="/home/jspage" tag="li">javascript</router-link>
-                        <router-link to="/home/htmlpage" tag="li">html</router-link>
-                        <router-link to="/home/csspage" tag="li">css</router-link>
+                        <router-link to="/home/page/homepage" tag="li">首页</router-link>
+                        <router-link to="webpage" tag="li">web</router-link>
+                        <router-link to="pythonpage" tag="li">python</router-link>
+                        <router-link to="jspage" tag="li">javascript</router-link>
+                        <router-link to="htmlpage" tag="li">html</router-link>
+                        <router-link to="csspage" tag="li">css</router-link>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -19,6 +19,8 @@
     </div>
 </template>
 <script>
+    export default {
+    }
 </script>
 <style>
     .home {

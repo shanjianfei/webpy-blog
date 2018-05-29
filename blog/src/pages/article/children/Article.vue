@@ -1,10 +1,10 @@
 <template>
     <div class="article">
-        <div v-for="item in info">
-            <a>
+        <div v-for="item in infoFilter">
+            <a href="#/home/articlecontent" target="_blank">
                 <div class="row"><span class="label label-primary">{{item.type}}</span></div>
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-sm-8 col-xs-8">
                         <h2>{{item.title}}</h2>
                         <div class="detail">
                             <span>{{item.datetime}}</span>
@@ -12,27 +12,39 @@
                             <span>阅读量: {{item.clickRate}}</span>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <img src="/static/img/js.jpg">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <img v-bind:src="'/static/img/' + item.type + '.jpg'">
                     </div>
                 </div>
             </a>
         </div>
-        
     </div>
 </template>
 <script>
     import {mapState} from 'vuex'
     export default {
+        props: ['type'],
+        data() {
+            return {
+                infoFilter: []
+            }
+        },
         methods: {
 
         },
-        computed: mapState({
-            // 箭头函数可使代码更简练
-            info: state => state.info,
-        }),
-        created: function() {
-            console.log(this.$store.state.info)
+        computed: {
+            ...mapState({
+                // 箭头函数可使代码更简练
+                info: state => state.info,
+            }),
+        },
+        watch: {
+            'type': function() {
+                let self = this;
+                this.infoFilter = this.info.filter(function(element) {
+                    return ((element.type + 'page') === self.type)
+                })
+            }
         }
     }
 </script>
