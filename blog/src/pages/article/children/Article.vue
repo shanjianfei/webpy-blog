@@ -23,14 +23,22 @@
 <script>
     import {mapState} from 'vuex'
     export default {
-        props: ['type'],
         data() {
             return {
                 infoFilter: []
             }
         },
         methods: {
-
+            filter: function() {
+                let id = this.$route.params.id
+                if(id === 'homepage') {
+                    this.infoFilter = this.info
+                } else {
+                    this.infoFilter = this.info.filter(function(element) {
+                        return ((element.type + 'page') === id)
+                    })
+                }
+            }
         },
         computed: {
             ...mapState({
@@ -38,14 +46,14 @@
                 info: state => state.info,
             }),
         },
+        mounted: function() {
+            this.filter()
+        },
         watch: {
-            'type': function() {
-                let self = this;
-                this.infoFilter = this.info.filter(function(element) {
-                    return ((element.type + 'page') === self.type)
-                })
+            '$route': function(to, from) {
+                this.filter()
             }
-        }
+        },
     }
 </script>
 <style>

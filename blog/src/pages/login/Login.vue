@@ -1,6 +1,6 @@
 <template>
   <div class="row" id="login">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xs-offset-3 col-sm-offset-3 col-md-offset-4 col-lg-offset-4">
       <div class="header">
         <a v-bind:class="[way==='login'? 'active': '']" @click="changeWay('login')">&nbsp;&nbsp;&nbsp;&nbsp;登录&nbsp;&nbsp;&nbsp;&nbsp;·</a>
         <a v-bind:class="[way==='register'? 'active': '']" @click="changeWay('register')">&nbsp;&nbsp;&nbsp;&nbsp;注册&nbsp;&nbsp;&nbsp;&nbsp;</a>
@@ -46,11 +46,14 @@ export default {
     },
     methods: {
         login: function() {
-            console.log(this.username)
+            let self = this
             if(this.username && this.password) {
-                this.$axios.post('/login', {user: this.usernameR, password: this.passwordR})
+                this.$axios.post('/login', {usr: this.username, psd: this.password})
                 .then(function(response) {
-                    console.log(response)
+                    if(response.status === 200 && response.data.status === 'success') {
+                      console.log(self)
+                        self.$router.push('/')
+                    }
                 })
                 .catch(function(error) {
                     console.log(error)
@@ -77,13 +80,16 @@ export default {
     }
 
     #login {
-      position: absolute;
+      position: fixed;
       top: 0;
-      width: 100%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      /*width: 100%;*/
       z-index: 1200;
       background-color: #f3f3f3;
-      height: 100%;
-      margin: 0;
+      /*height: 100%;
+      margin: 0;*/
       padding-top: 100px;
     }
 

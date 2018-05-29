@@ -10,6 +10,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+        path: '/',
+        redirect: '/home'
+    },
+    {
         path: '/login',
         name: 'Login',
         component: Login
@@ -18,6 +22,10 @@ export default new Router({
         path: '/home',
         component: Home,
         children: [
+            {
+                path: '',
+                redirect: 'page/homepage'
+            },
             {
                 path: 'page/:id',
                 component: ArticleContainer,

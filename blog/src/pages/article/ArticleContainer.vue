@@ -1,16 +1,11 @@
 <template>
     <div class="article-container">
-        <articles v-bind:type="type"></articles>
+        <articles></articles>
     </div>
 </template>
 <script>
     import articles from "@/pages/article/children/Article"
     export default {
-        data() {
-            return {
-                type: ''
-            }
-        },
         components: {
             articles,
         },

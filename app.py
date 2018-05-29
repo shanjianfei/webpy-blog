@@ -2,7 +2,7 @@
 import web
 import json
 
-users = {}
+users = {'admin': '123456'}
 
 urls = (
 	'/', 'Index',
@@ -59,10 +59,11 @@ class Login(object):
 		raise web.seeother('/static/html/login.html')
 
 	def POST(self):
-		data = web.input()
-		user = data['usr']
-		password = data['psd']
-		if user in users.keys() and users[user] == password:
+		data = eval(web.data())
+		user = data.get('usr', '')
+		password = data.get('psd', '')
+		global users
+		if user in users.keys() and users.get(user) == password:
 			session.login = 1
 			session.username = user
 			web.setcookie('username', user, 3600)

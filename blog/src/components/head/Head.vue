@@ -28,7 +28,7 @@
                         <button type="submit" class="btn btn-default">Search</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">登录</a></li>
+                        <li><router-link to="/login">登录</router-link></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
