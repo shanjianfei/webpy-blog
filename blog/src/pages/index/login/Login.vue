@@ -46,13 +46,11 @@ export default {
     },
     methods: {
         login: function() {
-            let self = this
             if(this.username && this.password) {
                 this.$axios.post('/login', {usr: this.username, psd: this.password})
                 .then(function(response) {
                     if(response.status === 200 && response.data.status === 'success') {
-                      console.log(self)
-                        self.$router.push('/')
+                        window.location.href = '/test.html'
                     }
                 })
                 .catch(function(error) {
