@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-    import articles from "@/pages/article/children/Article"
+    import articles from "@/pages/index/article/children/Article"
     export default {
         components: {
             articles,
