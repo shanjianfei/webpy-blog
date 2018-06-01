@@ -1,59 +1,12 @@
 <template>
   <div id="app">
-    <div class="body">
-      <div class="title-input">
-        <input type="text" name="title-input" placeholder="请输入标题">
-      </div>
-      <div class="editor">
-        <quill-editor v-model="content"
-          ref="myQuillEditor"
-          :options="editorOption"
-          @blur="onEditorBlur($event)"
-          @focus="onEditorFocus($event)"
-          @ready="onEditorReady($event)">
-        </quill-editor>
-      </div> 
+    <div class="article-actions">
+      <router-link to="/article">写文章</router-link>
+      <router-link to="/manage">文章管理</router-link>
     </div>
+    <router-view></router-view>
   </div>
 </template>
-
-<script>
-  export default {
-    data () {
-      return {
-        content: '<h2>I am Example</h2>',
-        editorOption: {
-          // some quill options
-        }
-      }
-    },
-    // manually control the data synchronization
-    // 如果需要手动控制数据同步，父组件需要显式地处理changed事件
-    methods: {
-      onEditorBlur(quill) {
-        console.log('editor blur!', quill)
-      },
-      onEditorFocus(quill) {
-        console.log('editor focus!', quill)
-      },
-      onEditorReady(quill) {
-        console.log('editor ready!', quill)
-      },
-      onEditorChange({ quill, html, text }) {
-        console.log('editor change!', quill, html, text)
-        this.content = html
-      }
-    },
-    computed: {
-      editor() {
-        return this.$refs.myQuillEditor.quill
-      }
-    },
-    mounted() {
-      console.log('this is current quill instance object', this.editor)
-    }
-  }
-</script>
 
 <style>
 #app {
@@ -63,17 +16,38 @@
   text-align: center;
   color: #2c3e50;
   height: 100%;
-}
-.body {
   margin: auto;
   text-align: center;
   max-width: 900px;
-/*  background: #e9e9e9;*/
 }
 
-.title-input input {
-  width: 100%;
-  margin-top: 50px;
-  margin-bottom: 60px;
+.article-actions {
+  margin-top: 30px;
 }
+
+.article-actions a {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.router-link-active {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+
+
 </style>
