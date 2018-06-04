@@ -12,7 +12,7 @@ urls = (
     '/register', 'Register',
     '/user', 'User',
     '/article', 'Article',
-    '/article', 'ArticleDetail'
+    '/articledetail', 'ArticleDetail'
 )
 
 
@@ -96,18 +96,21 @@ class User(object):
 class ArticleDetail(object):
     def GET(self):
         data = web.input()
+        print(data)
         db = connect()
         if 'id' in data:
             res = db.select('articles',
                             where={'article_id': data['id']})
         else:
             res = db.select('articles')
+
         _res = []
         for _ in res:
             _['create_time'] = str(_['create_time'])
             _['last_modified_time'] = str(_['last_modified_time'])
             _res.append(_)
-        return json.dumps({'status': 'success', 'data': res})
+        print(_res)
+        return json.dumps({'status': 'success', 'data': _res})
 
 
 class Article(object):

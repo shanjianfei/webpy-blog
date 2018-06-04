@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="article-actions">
-      <router-link to="/article">写文章</router-link>
+      <router-link to="/articlewrite">写文章</router-link>
       <router-link to="/manage">文章管理</router-link>
     </div>
     <router-view></router-view>

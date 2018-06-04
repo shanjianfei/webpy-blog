@@ -8,8 +8,9 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6 col-md-offset-6 col-sm-offset-6 col-xs-offset-6"
                                 id="manage-operate">
-                            <a>查看</a>
-                            <a>删除</a>
+                            <router-link :to="{path: '/article', id: item.article_id}">查看</router-link>
+                            {{item.article_id}}
+                            <a @click="deleteArticle">删除</a>
                         </div>
                     </div>
                 </div>
@@ -27,6 +28,9 @@
         },
         methods: {
             viewAticle: function() {
+
+            },
+            deleteArticle: function() {
 
             }
         },
