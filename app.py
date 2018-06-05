@@ -159,6 +159,20 @@ class Article(object):
         else:
             return json.dumps({'status': 'fail'})
 
+    def DELETE(self):
+        data = web.input()
+        if 'id' in data:
+            id = data['id']
+            db = connect()
+            if db != -1:
+                try:
+                    db.delete('articles',
+                              where='article_id = $id', vars=locals())
+                    return json.dumps({'status': 'success'})
+                except Exception, e:
+                    print e
+        return json.dumps({'status': 'fail'})
+
 
 if __name__ == '__main__':
     app.run()
