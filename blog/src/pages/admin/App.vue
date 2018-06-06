@@ -9,6 +9,9 @@
 </template>
 
 <style>
+body {
+  background: #f4f4f4;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,6 +22,9 @@
   margin: auto;
   text-align: center;
   max-width: 900px;
+  background: white;
+  padding: 20px;
+  margin-top: 50px;
 }
 
 .article-actions {
