@@ -123,7 +123,7 @@ class Article(object):
                             where={'article_id': data['id']})
         else:
             res = db.select('articles',
-                            what='article_id,title,create_time,article_type')
+                            what='article_id,title,create_time,article_type, click_rate')
         _res = []
         for _ in res:
             _['create_time'] = str(_['create_time'])

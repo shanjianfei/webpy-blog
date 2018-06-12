@@ -1,0 +1,36 @@
+conn=MySQLdb.connect(host="localhost",user="root",passwd="twet",db="test",charset="utf8")
+cursor = conn.cursor()
+
+sql = "select * from youthpro"
+cursor.execute(sql)
+rows = cursor.fetchall()
+for row in rows:
+print row
+
+while not (re.search(p,line) and line):
+n=0
+if line:
+#print line.split(',')
+[rank,id,URL,visitNum,buyNum,otherBuy,otherNotBuy]=line.split(',')
+print rank,id,URL,visitNum,buyNum,otherBuy,otherNotBuy
+sql = "insert into youthpro(id,name,price,visitNum,buyNum,otherBuy,otherNotBuy,URL,rank) values(%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+id,name,price,visitNum,buyNum,otherBuy,otherNotBuy,URL,rank="werwrw",'misa',80,12,12,8,7,7,7
+param = (id,name,price,visitNum,buyNum,otherBuy,otherNotBuy,URL,rank)
+n = cursor.execute(sql,param)
+print n
+line = f.readline().strip('\n')
+
+conn.commit()
+
+sql = "select * from youthpro"
+cursor.execute(sql)
+rows = cursor.fetchall()
+for row in rows:
+print row
+cursor.close()
+
+具体原因还需要你自己调试，你的代码里面有如下几个错误：
+1.cursor每次执行完毕后需要执行cursor.close用来关闭当前线程
+2.在循环中反复执行insert根本无效率而言，你在while里面把所有的数据都存入sql中， 比如insert table(A,B) values(1,2),(3,4),(5,6)，跳出循环后再执行cursor.exec.
+3.循环中提交可能会出现这样的问题，你不断的使用cursor提交，实际在程序在不断的创建新的端口和mysql的3306建立链接，如果循环很大的话，这简直就是对数据库的DDOS攻击。 当达到你服务器性能的瓶颈的时候，你用show process list会看到你的数据库中存在大量的处在waiting状态的SQL, TCP/IP的连接数也会处在一个惊人的峰值。这时候MYSQL会拒绝服务。
+4.在程序里面把访问数据库包装成一个类或函数是一个好的习惯

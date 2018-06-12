@@ -37,6 +37,11 @@ const store = new Vuex.Store({
                 clickRate: 0
             },
         ]
+    },
+    mutations: {
+        update (state, info) {
+            state.info = info
+        }
     }
 })
 

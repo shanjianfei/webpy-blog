@@ -2,7 +2,7 @@
     <div class="page-manage-article">
         <div class="article-info" v-for="item in articlesInfo">
             <div class="article-title">
-                <p>{{item.title}}</p>
+                {{item.title}}
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-6 item-info-left" style="text-align: left">

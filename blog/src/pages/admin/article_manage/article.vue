@@ -15,10 +15,7 @@
             this.$axios.get('/articledetail' , {params: {id: this.$route.params.id}})
             .then((response) => {
                 if(response.status === 200) {
-                    console.log(response)
                     this.articleInfo = response.data.data[0];
-                    document.getElementById('article-title-view').innerHTML = this.articleInfo.title;
-                    document.getElementById('article-content-view').innerHTML = this.articleInfo.article;
                 }
             })
         }
